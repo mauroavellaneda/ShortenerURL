@@ -29,8 +29,9 @@ exports.addUrl = async (req, res, next) => {
 exports.redirectUrl = async (req, res, next) => {
   const url = await Url.findOne({ urlShort: req.params.url });
   if (!url) {
-    res.redirect("/error=404");
+    res.redirect("/?error=404");
     next();
   }
-  res.redirect('url.urlOriginal')
+  res.redirect(url.urlOriginal);
+  next();
 };

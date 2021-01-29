@@ -6,13 +6,14 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost/URLShortener", {
   useNewUrlParser: true,
 });
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set("view engine", "pug");
 

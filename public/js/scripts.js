@@ -1,10 +1,8 @@
-const { response } = require("express");
-
 const form = document.querySelector("#add-url");
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const urlOriginal = document.querySelector("#urlOriginal").Value;
+  const urlOriginal = document.querySelector("#urlOriginal").value;
 
   const response = await fetch(e.target.action, {
     method: e.target.method,
@@ -38,3 +36,15 @@ form.addEventListener("submit", async (e) => {
     container.appendChild(message);
   }
 });
+
+const urlParams = new URLSearchParams(window.location.search);
+
+if (urlParams.has("error")) {
+ 
+  const message = document.createElement("div");
+  message.classList.add("message-url", "error");
+  message.innerHTML = `<p>URL not valid</p>`;
+
+  const container = document.querySelector("main");
+  container.appendChild(message);
+}
